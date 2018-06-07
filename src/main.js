@@ -4,9 +4,10 @@ function add(numbers) {
     if (!numbers)
         return 0;
     var total = 0;
-    var regex = new RegExp('/d+(,|\n|$)');
+    // const regex = new RegExp('./d+(,|\n|$)');
+    var regex = new RegExp('\n|,|\\\\n'); // \\\\n to support new-line chars from command-line args
     console.log('regex arr: ', numbers.split(regex));
-    numbers.split(',').forEach(function (number) {
+    numbers.split(regex).forEach(function (number) {
         return total += Number(number);
     });
     console.log('total: %s', total);

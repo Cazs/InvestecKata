@@ -4,8 +4,8 @@ export function add(numbers: string)
         return 0;
     let total = 0;
     // const regex = new RegExp('./d+(,|\n|$)');
-    const regex = new RegExp('\n|,');
-    // console.log('regex arr: ', numbers.split(regex));
+    const regex = new RegExp('\n|,|\\\\n'); // \\\\n to support new-line chars from command-line args
+    console.log('regex arr: ', numbers.split(regex));
     numbers.split(regex).forEach((number) =>
                             total+=Number(number));
     console.log('total: %s', total);
