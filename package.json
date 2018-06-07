@@ -1,0 +1,27 @@
+{
+  "name": "investec-kata-assessment",
+  "version": "1.0.0",
+  "description": "Investec Kata Assessment - implement string parser to add numbers delimited by some string",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cazs/InvestecKata.git"
+  },
+  "keywords": [
+    "investec",
+    "kata",
+    "assessment"
+  ],
+  "author": "Casper Ndlovu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cazs/InvestecKata/issues"
+  },
+  "homepage": "https://github.com/Cazs/InvestecKata#readme",
+  "devDependencies": {
+    "jest": "^23.1.0"
+  }
+}
