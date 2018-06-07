@@ -5,22 +5,28 @@ function add(numbers) {
         return 0;
     }
     var custom_delimiter_regex = new RegExp('//\\[(.*)\\]\\\\n');
-    var delimiter = '\n|,|\\\\n';
-    var numbers_arr = numbers.split(custom_delimiter_regex);
-    console.log('numbers_arr: ', numbers_arr);
-    if (numbers_arr && numbers_arr.length > 1) {
-        delimiter = escapeString(numbers_arr[1].trim());
+    // by default use new-line char & commas as delimiter
+    var delimiter = '\n|,|\\\\n'; // \\\\n to support new-line chars from command-line args
+    var custom_delimiter_arr = numbers.split(custom_delimiter_regex);
+    if (custom_delimiter_arr && custom_delimiter_arr.length > 1) {
+        delimiter = escapeString(custom_delimiter_arr[1].trim());
         console.log('found custom delimiter: ', delimiter);
     }
     var total = 0;
     // const regex = new RegExp('./d+(,|\n|$)');
-    var regex = new RegExp(delimiter); // \\\\n to support new-line chars from command-line args
-    console.log('regex arr: ', numbers.replace(custom_delimiter_regex, '').split(regex));
-    numbers.trim()
-        .replace(custom_delimiter_regex, '')
-        .split(regex)
+    var regex = new RegExp(delimiter);
+    numbers.trim() // remote whitespace around input
+        .replace(custom_delimiter_regex, '') // make first line blank
+        .split(regex) // split 
         .forEach(function (number) {
-        return total += Number(number.trim());
+        var current_number = Number(number.trim());
+        if (!isNaN(current_number)) // if current number is a valid number
+         {
+            if (current_number >= 0)
+                total += current_number;
+            else
+                throw new Error('negatives not allowed: ' + number.trim());
+        }
     });
     console.log('total: %s', total);
     return total;

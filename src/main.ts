@@ -22,8 +22,16 @@ export function add(numbers: string)
     numbers.trim() // remote whitespace around input
             .replace(custom_delimiter_regex, '') // make first line blank
             .split(regex) // split 
-            .forEach((number) => 
-                total += Number(number.trim()));
+            .forEach((number) =>
+            {
+                const current_number = Number(number.trim());
+                if(!isNaN(current_number)) // if current number is a valid number
+                {
+                    if(current_number >= 0)
+                        total+= current_number;
+                    else throw new Error('negatives not allowed: ' + number.trim());
+                }
+            });
     console.log('total: %s', total);
     return total;
 }

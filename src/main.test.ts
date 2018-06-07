@@ -2,29 +2,55 @@
 
 describe('Main Tests', () =>
 {
-    it('adds 1,2 to equal 3', () =>
+    test('adds 1,2 to equal 3', () =>
     {
         // process.argv[2] = "1,2";
         // const { add } = Main;
-        const {add} = require('./main');
-        expect(add('1,2')).toBe(3);
+        function addTwoNumbers()
+        {
+            const {add} = require('./main');
+            return add('1,2');
+        }
+        expect(addTwoNumbers()).toBe(3);
     })
 
-    it('adds 1,2,3 to equal 6', () =>
+    test('adds 1,2,3 to equal 6', () =>
     {
-        const {add} = require('./main');
-        expect(add('1,2,3')).toBe(6);
+        function addMultipleNumbers()
+        {
+            const {add} = require('./main');
+            return add('1,2,3');
+        }
+        expect(addMultipleNumbers()).toBe(6);
     })
 
-    it('adds 1,2,3\\n4 to equal 10', () =>
+    test('adds 1,2,3\\n4 to equal 10', () =>
     {
-        const {add} = require('./main');
-        expect(add("1,2,3\n4")).toBe(10);
+        function addWithMultipleDelimiters()
+        {
+            const {add} = require('./main');
+            return add("1,2,3\n4");
+        }
+        expect(addWithMultipleDelimiters()).toBe(10);
     })
 
-    it('adds //[+]\\n1+2+3+4 to equal 10', () =>
+    test('adds //[+]\\n1+2+3+4 to equal 10', () =>
     {
-        const {add} = require('./main');
-        expect(add("//[+]\\n1+2+3+4")).toBe(10);
+        function addWithCustomDelimiter()
+        {
+            const {add} = require('./main');
+            return add("//[+]\\n1+2+3+4");
+        }
+        expect(addWithCustomDelimiter()).toBe(10);
+    })
+    
+    test('1,2,-3,4 should throw exception', () =>
+    {
+        function addWithNegatives()
+        {
+            const {add} = require('./main');
+            return add("1,2,-3,4")
+        }
+        expect(addWithNegatives).toThrowError(/negatives not allowed/);
     })
 });
