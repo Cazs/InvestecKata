@@ -21,4 +21,10 @@ describe('Main Tests', () =>
         const {add} = require('./main');
         expect(add("1,2,3\n4")).toBe(10);
     })
+
+    it('adds //[+]\\n1+2+3+4 to equal 10', () =>
+    {
+        const {add} = require('./main');
+        expect(add("//[+]\\n1+2+3+4")).toBe(10);
+    })
 });
