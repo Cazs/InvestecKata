@@ -5,9 +5,15 @@ export function add(numbers: string)
         return 0;
     }
     const custom_delimiter_regex = new RegExp('//\\[(.*)\\]\\\\n');
-    // by default use new-line char & commas as delimiter
-    let delimiter = '\n|,|\\\\n';// \\\\n to support new-line chars from command-line args
+    
+    /*
+     * by default use new-line char & commas as delimiter,
+     * \\\\n to support new-line chars from command-line args
+     */
+    let delimiter = '\n|,|\\\\n';
+
     const custom_delimiter_arr = numbers.split(custom_delimiter_regex);
+
     if(custom_delimiter_arr && custom_delimiter_arr.length > 1)
     {
         delimiter = escapeString(custom_delimiter_arr[1].trim());
@@ -22,15 +28,16 @@ export function add(numbers: string)
 
     numbers.trim() // remote whitespace around input
             .replace(custom_delimiter_regex, '') // make first line blank
-            .split(regex) // split 
+            .split(regex)
             .forEach((number) =>
             {
                 const current_number = Number(number.trim());
                 if(!isNaN(current_number)) // if current number is a valid number
                 {
-                    if(current_number >= 0)
-                        total+= current_number;
-                    else negatives.push(current_number);
+                    if(current_number >= 0 && current_number <= 1000) // if current number is between 0 and 1000
+                        total+= current_number; // add current number to total
+                    else if(current_number < 0) // if current number is a negative number
+                        negatives.push(current_number); // add current number to list of negative numbers
                 }
             });
     if(negatives.length > 0)
