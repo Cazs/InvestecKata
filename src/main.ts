@@ -18,6 +18,7 @@ export function add(numbers: string)
 
     // const regex = new RegExp('./d+(,|\n|$)');
     const regex = new RegExp(delimiter); 
+    const negatives : Number[] = [];
 
     numbers.trim() // remote whitespace around input
             .replace(custom_delimiter_regex, '') // make first line blank
@@ -29,9 +30,11 @@ export function add(numbers: string)
                 {
                     if(current_number >= 0)
                         total+= current_number;
-                    else throw new Error('negatives not allowed: ' + number.trim());
+                    else negatives.push(current_number);
                 }
             });
+    if(negatives.length > 0)
+        throw new Error('negatives not allowed: ' + negatives);
     console.log('total: %s', total);
     return total;
 }

@@ -49,8 +49,8 @@ describe('Main Tests', () =>
         function addWithNegatives()
         {
             const {add} = require('./main');
-            return add("1,2,-3,4")
+            return add("-1,2,-3,4")
         }
-        expect(addWithNegatives).toThrowError(/negatives not allowed/);
+        expect(addWithNegatives).toThrowError(/negatives not allowed: -1,-3/);
     })
 });
