@@ -7,7 +7,7 @@
     "test": "jest",
     "compile": "tsc src/main.ts",
     "start": "node src/main.js",
-    "compile-start": "tsc src/main.ts && src/node main.js"
+    "compile-start": "tsc ./src/main.ts && node ./src/main.js"
   },
   "repository": {
     "type": "git",
