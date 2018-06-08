@@ -28,7 +28,8 @@ To compile and execute default method, i.e. add(numbers: string), run:
     npm run compile-start <NUMBERS>
 ```
 
-Where <NUMBERS> is a string of numbers delimited by commas, new-line characters or a custom delimiter.
+Where &lt;NUMBERS&gt; is a string of numbers delimited by commas, new-line characters or a custom delimiter.
+<br/>
 Define custom delimiters by adding a string with following format at the beginning of your input
 ```//[delimiter]\n<NUMBERS>```
 i.e.
