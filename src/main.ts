@@ -1,21 +1,25 @@
-export function add(numbers: string)
+export function add(numbers: string):Number
 {
     if(!numbers)
     {
-        return 0;
+        return 0; // return 0 is input is invalid
     }
     /*
-     * by default use new-line char and commas as delimiter,
-     * \\\\n to support new-line chars from command-line args
+     * By default use new-line char and commas as delimiter,
+     * - \\\\n to support new-line chars from command-line args
      */
     let number_delimiter_regex = '\n|,|\\\\n';
 
     // const custom_delimiters_regex = new RegExp('//\\[(.*)\\]+\\\\n');
     
-    const custom_delimiters_regex = new RegExp(/\/\/(\[.+\])+\\n/g); // regex to check if a custom delimiter is defined
-    const custom_delimiters_arr = numbers.split(custom_delimiters_regex); // element 0 will be empty, 1 will be string of delimiters i.e. [+][&], 2 will be a string of actual numbers
+    // regex to check if a custom delimiter is defined
+    const custom_delimiters_regex = new RegExp(/\/\/(\[.+\])+\\n/g);
+    
+    // element 0 will be empty, 1 will be string of delimiters i.e. [+][&], 2 will be a string of actual numbers
+    const custom_delimiters_arr = numbers.split(custom_delimiters_regex);
 
-    if(custom_delimiters_arr.length > 1) // if string of numbers defines custom delimiter/s
+    // if string of numbers defines custom delimiter/s, extract delimiters from string
+    if(custom_delimiters_arr.length > 1)
     {
         custom_delimiters_arr[1].trim()
                                 .split(/(\[.\])/g) // convert string of delimiters to string array of delimiters
@@ -45,7 +49,7 @@ export function add(numbers: string)
         {
             if(current_number >= 0 && current_number <= 1000) // if current number is between 0 and 1000
                 total+= current_number; // add current number to total
-            else if(current_number < 0) // if current number is a negative number
+            else if(current_number < 0) // else if current number is a negative number
                 negatives.push(current_number); // add current number to list of negative numbers
         }
     });
@@ -56,9 +60,10 @@ export function add(numbers: string)
     return total;
 }
 
+// Method to escape special/reserved characters from a given input string
 function escapeString(str: string)
 {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|\&]/g, '\\$&');
 }
 
-export default add(process.argv[2]);
+export default add(process.argv[2]); // execute add method with command-line args by default

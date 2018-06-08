@@ -7,7 +7,7 @@
     "test": "jest",
     "compile": "tsc src/main.ts",
     "start": "node src/main.js",
-    "compile-start": "tsc ./src/main.ts && node ./src/main.js"
+    "compile-start": "tsc src/main.ts && node src/main.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,10 @@
   "homepage": "https://github.com/Cazs/InvestecKata#readme",
   "devDependencies": {
     "@types/node": "^10.3.1",
+    "@types/jest": "^23.0.0",
+    "typescript": "^2.9.1",
     "jest": "^23.1.0",
-    "typescript": "^2.9.1"
+    "ts-jest": "^22.4.6"
   },
   "jest": {
     "transform": {
@@ -43,8 +45,5 @@
       "node"
     ]
   },
-  "dependencies": {
-    "@types/jest": "^23.0.0",
-    "ts-jest": "^22.4.6"
-  }
+  "dependencies": {}
 }
